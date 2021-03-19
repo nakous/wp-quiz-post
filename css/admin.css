@@ -1,0 +1,24 @@
+.card-handle{
+    display: block !important;
+    max-width: 100%;
+    padding: 0;
+}
+.card-title{
+    border-bottom: 1px solid #DDD;
+    padding: 13px;
+    font-size: 16px;
+}
+.cart-list-group{
+    margin: 10px 0 0;
+}
+.cart-list-group li{
+    border-bottom: 1px solid #DDD;
+    padding: 10px;
+}
+.cart-list-group li:first-child{
+    border-bottom: 1px solid #DDD;
+    padding-top: 0;
+}
+.cart-list-group li:last-child{
+    border-bottom: 0 none; 
+}
