@@ -2,10 +2,10 @@
 wordpress quiz plugin for post
 
 ## Feature : 
--The plugin is adapted to all your content type 'Post' , 'page' and the new custom content type
+- The plugin is adapted to all your content type 'Post' , 'page' and the new custom content type
 - Responsive template 
 - No limit of questions
-- list of user answers with rapport
+- List of user answers with rapport
 
 #### Screen One :
 
