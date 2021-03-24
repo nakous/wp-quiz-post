@@ -1,11 +1,19 @@
-# wp-quiz-post
-wordpress quiz plugin for post
+# Wordpres Quiz Post
+The Quiz post plugin allows you to create graded assessments in Wordpress. A Quiz takes the form of a series of questions. The responses are then stored in the database. Scores and results are displayed during or after the quiz depending on the chosen topic. Administrators can provide automatic or manual results. Check Out All The Features Below! 
 
 ## Feature : 
 - The plugin is adapted to all your content type 'Post' , 'page' and the new custom content type
 - Responsive template 
 - No limit of questions
 - List of user answers with rapport
+- Very configurable feedback times and options 
+- Operations for managing questions/results
+- Configurable questions per page
+- Multiple attempts per user
+- Timed quizzes (Dev version)
+- Robust Quiz/Question versioning
+- Import Quiz format json
+- And many more...
 
 #### Screen One :
 
