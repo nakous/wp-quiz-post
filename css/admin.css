@@ -20,5 +20,8 @@
     padding-top: 0;
 }
 .cart-list-group li:last-child{
-    border-bottom: 0 none; 
+   /* border-bottom: 0 none; */
+}
+.card-footer{
+    padding: 10px;
 }
