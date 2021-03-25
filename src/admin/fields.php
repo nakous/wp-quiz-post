@@ -1,10 +1,7 @@
 <?php
-
-
 /*
 * Admin Sittings
 */
-
 function wpqp_register_settings() {
     register_setting( 'wpqp_fields_options', 'wpqp_fields_options', 'wpqp_fields_options_validate' );
     add_settings_section( 'ct_settings', 'WPQP Settings', 'wpqp_plugin_section_text', 'wpqp_fields_sections' );
@@ -17,7 +14,6 @@ function wpqp_register_settings() {
     add_settings_field( 'wpqp_fields_setting_helper', 'Helper Text', 'wpqp_fields_setting_helper', 'wpqp_fields_sections', 'ct_settings' );
 }
 add_action( 'admin_init', 'wpqp_register_settings' );
-
 function wpqp_fields_options_validate( $input ) {
    $newinput['content_type'] = $input['content_type']  ;
    $newinput['active'] = $input['active']  ;
@@ -85,7 +81,6 @@ function wpqp_fields_setting_answer_types(){
     <?php
 }
 function wpqp_fields_setting_skills(){
-
     $options = get_option( 'wpqp_fields_options' );
  echo '<div id="skills_list" >';
     if(isset($options['skills']))
@@ -112,16 +107,13 @@ function wpqp_fields_setting_skills(){
             jQuery( this ).parent().remove();
         })
      })
-
     </script>
         
     <?php
-
 }
 function wpqp_fields_setting_active(){
     $options = get_option( 'wpqp_fields_options' );
     ?>
-
     <input   type="checkbox" id="wpqp_fields_setting_active"
     name="wpqp_fields_options[active]"
     value="1" 
@@ -129,7 +121,6 @@ function wpqp_fields_setting_active(){
     >
         
     <?php
-
 }
 function wpqp_fields_setting_content_type() {
     $options = get_option( 'wpqp_fields_options' );
@@ -138,6 +129,7 @@ function wpqp_fields_setting_content_type() {
         'public' => true,
     );
     $post_types = get_post_types( $args, 'objects' );
+    
     ?>
      
     <select multiple  id='wpqp_fields_setting_content_type' name='wpqp_fields_options[content_type][]'>
@@ -147,7 +139,9 @@ function wpqp_fields_setting_content_type() {
             ?>
             <option 
             <?php
-                if (in_array(esc_attr( $post_type_obj->name ) , $options['content_type']  ))  echo "selected" ;
+                if (isset($options['content_type'])  )
+                 if ( in_array(esc_attr( $post_type_obj->name ) , $options['content_type']  ))
+                  echo "selected" ;
             ?>
              value="<?php echo esc_attr( $post_type_obj->name ); ?>"><?php echo esc_html( $labels->name ); ?></option>
         <?php endforeach; ?>

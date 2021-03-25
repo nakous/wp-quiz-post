@@ -1,4 +1,3 @@
-
 <?php
 /**
  * ADD Box Questions
@@ -48,7 +47,6 @@ function quiz_html( $post ) {
                                 {{ atype }}
                             </option>
                         </select> 
-
                     </div> 
                     <ul class="cart-list-group">
                                 <li class="list-group-item"  v-for="(response, index) in new_question.answers" :key="index">
@@ -93,10 +91,8 @@ function quiz_html( $post ) {
                     </div>
                 </div>
         </div>
-
     </div>
      
         
     <?php
-  }
-  ?>
+}

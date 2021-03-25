@@ -1,6 +1,4 @@
 <?php
-
-
 function wpqp_Answers_list()
 {
     global $wpdb;
@@ -34,7 +32,11 @@ function wpqp_Answers_list()
                  <td><?php echo $row->percentage ;?></td>
                  <td><?php
                  $post   = get_post( $row->postid );
-                 echo $post->post_title ;?></td>
+                 if(isset($post->post_title))
+                 echo $post->post_title ;
+                 else
+                 echo 'Not Found';
+                 ?></td>
              </tr>
          <?php 
      }
@@ -55,4 +57,4 @@ function wpqp_Answers_list()
     ));
     echo '</div>';
  
-}  
+}

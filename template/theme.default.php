@@ -1,31 +1,27 @@
 <?php
+
 function wpqp_default_theme($post_id){
     $post   = get_post( $post_id );
     //print_r($post );
      //Style
      //wp_enqueue_style( 'sqp-bootstrap', BOOTSTRAP_CSS, array(  ), false, true );
-     //wp_enqueue_style( 'sqp-admin-style', plugin_dir_url(__FILE__) . '../css/post.css',array('sqp-bootstrap') );
-     wp_enqueue_style( 'sqp-admin-style', plugin_dir_url(__FILE__) . '../css/post.css',array() );
+     //wp_enqueue_style( 'sqp-admin-style', plugin_dir_url(WPPQ_FILE) . '../css/post.css',array('sqp-bootstrap') );
+     wp_enqueue_style( 'sqp-admin-style', PLUGIN_URL. 'css/post.css',array() );
      
      //JS
-
     // wp_enqueue_script( 'sqp-bootstrap-js', BOOTSTRAP_JS , array( 'jquery' ), false, true);
      wp_enqueue_script( 'vuejs', VUEJS , array( 'jquery' ) , false, true );
      wp_enqueue_script( 'axios', AXIOS , array( 'vuejs' ) , false, true );
-     wp_enqueue_script('wp_quiz_post_script', plugin_dir_url(__FILE__) . '../js/post-quiz.js',array( 'vuejs','axios' ), false, true ); 
-
+     wp_enqueue_script('wp_quiz_post_script', PLUGIN_URL . 'js/post-quiz.js',array( 'vuejs','axios' ), false, true ); 
 ?>
-
 <script>
     QUESTIONS =<?php echo get_post_meta( $post_id, FIELD_QUESTIONS, true ); ?>;
     ID = <?php echo $post_id; ?>;
     SITE_URL = '<?php echo SITE_URL ; ?>';
 </script>
 <section class="" id="quiz-app">
- 
 	<!--questionBox-->
 	<div class="questionBox"   >
-
 			<div class="firstpage" v-if="status== 'created'">
 				<header>
 					<div class=" ">
@@ -73,7 +69,6 @@ function wpqp_default_theme($post_id){
 			</div>
 			<!--qusetionContainer-->
 			<div class="questionContainer" v-if="status== 'started'" >
-
 				<header>
 					<div class="">
 						<h1 class="title"><?php echo $post->post_title ; ?></h1>
@@ -108,11 +103,8 @@ function wpqp_default_theme($post_id){
 				</div>
 				<!--quizFooter: navigation and progress-->
 				<footer class="questionFooter  ">
-
-
 						<!-- back button -->
 						<button  class="btn-quiz " v-on:click="prev();" v-if="qIndex > 0" >Back</button>
-
 						<!-- next button -->
 						<button  class="btn-quiz float-right"  v-on:click="next();" v-if="qIndex <= questinnaire.questions.length-2" >
 						 Next
@@ -122,12 +114,9 @@ function wpqp_default_theme($post_id){
 						</button>
 					
 					<!--/pagination-->
-
 				</footer>
 				<!--/quizFooter-->
-
 			</div>
-
 			<!--quizCompletedResult-->
 			<div v-if="status == 'finished'"   class="quizCompleted has-text-centered">
 			
@@ -138,7 +127,7 @@ function wpqp_default_theme($post_id){
 					</div>
 					 
 				</header>
-				<div class="inner-body height-300"> 
+				<div class="inner-body height-300"   v-bind:class="{ 'spinner-loading': loading  }"> 
 					 <div v-if="loading == true" class="swapping-squares-spinner"    >
 						<div class="square"></div>
 						<div class="square"></div>
@@ -157,15 +146,11 @@ function wpqp_default_theme($post_id){
 				<footer class="questionFooter text-center  "> 
 					 
 						<a  class="btn-quiz  " href="<?php echo SITE_URL ; ?>"   >GO HOME</a>
- 
 				</footer>
 			</div> 
 	</div>
 	<!--/questionBox
 	-->
 </section>
-
-    
-<?php   
-    }
-?>
+<?php
+}

@@ -43,7 +43,7 @@ section#quiz-app {
     padding: 4px 20px;
     margin: 3px;
     background-color: rgb(40, 48, 61);
-    border-bottom-color: rgba(0, 0, 0, 0);
+    border-color: rgba(0, 0, 0, 0);
     color: rgb(209, 228, 221);
     display: inline-block;
     text-decoration: none;
@@ -285,6 +285,13 @@ section#quiz-app {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  margin: auto;
+}
+.spinner-loading{
+  vertical-align: middle;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .swapping-squares-spinner .square {

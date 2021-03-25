@@ -1,4 +1,3 @@
-
 <?php
 
 function addWPQPAdminMenu() {
@@ -8,7 +7,7 @@ function addWPQPAdminMenu() {
         'administrator',
         NAME,
          'WPQPAdminDashboard' ,
-        'dashicons-chart-area',  //plugin_dir_url( __FILE__ ) . 'img/logo.png'
+        'dashicons-chart-area',  //plugin_dir_url( WPPQ_FILE ) . 'img/logo.png'
         26 
     ); 
     add_submenu_page( NAME,
@@ -26,4 +25,4 @@ function addWPQPAdminMenu() {
          'wpqp_Answers_list' 
     );
 }
-add_action('admin_menu',  'addWPQPAdminMenu' , 9);  
+add_action('admin_menu',  'addWPQPAdminMenu' , 9);

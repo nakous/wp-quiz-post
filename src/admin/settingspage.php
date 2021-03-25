@@ -17,4 +17,4 @@ function wpqp_options_page()
     </form>
     
 <?php
-}  
+}
