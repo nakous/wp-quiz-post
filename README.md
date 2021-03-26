@@ -1,6 +1,8 @@
 # Wordpres Quiz Post
 The Quiz post plugin allows you to create graded assessments in Wordpress. A Quiz takes the form of a series of questions. The responses are then stored in the database. Scores and results are displayed during or after the quiz depending on the chosen topic. Administrators can provide automatic or manual results. Check Out All The Features Below! 
 
+[Quiz Demo!](https://www.onlevelup.com/category/quiz/)
+
 ## Feature : 
 - The plugin is adapted to all your content type 'Post' , 'page' and the new custom content type
 - Responsive template 
