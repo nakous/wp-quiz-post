@@ -13,9 +13,12 @@ function wpqp_default_theme($post_id){
      wp_enqueue_script( 'vuejs', VUEJS , array( 'jquery' ) , false, true );
      wp_enqueue_script( 'axios', AXIOS , array( 'vuejs' ) , false, true );
      wp_enqueue_script('wp_quiz_post_script', PLUGIN_URL . 'js/post-quiz.js',array( 'vuejs','axios' ), false, true ); 
+	$qs =  get_post_meta( $post_id, FIELD_QUESTIONS, true );
+	if(empty($qs))
+		return;
 ?>
 <script>
-    QUESTIONS =<?php echo get_post_meta( $post_id, FIELD_QUESTIONS, true ); ?>;
+    QUESTIONS =<?php echo $qs; ?>;
     ID = <?php echo $post_id; ?>;
     SITE_URL = '<?php echo SITE_URL ; ?>';
 </script>
@@ -32,13 +35,12 @@ function wpqp_default_theme($post_id){
 				<div class="inner-body">
 					<div class="row-col">
 						<div class="col-left">
-							<div class="" >
+							<div class="text-center" >
 								<?php 
                                   if (has_post_thumbnail( $post->ID ) ){
                                         echo get_the_post_thumbnail( $post->ID , 'wpqp_quiz', array( 'class' => 'respo-img' ) );
                                   }  
-                                    
-									//do_action( 'generate_before_content' );
+                                     
 								?>
 								<!--div class="level ">Level : {{quiz.level}}</div-->
 								<div class="level "> Total Question : {{qCount}}</div>
@@ -91,9 +93,9 @@ function wpqp_default_theme($post_id){
 						</div>
 						<div class="col-left  height-300">
 							<div class="optionContainer  ">
-									<div class="form-check  "  v-for="(response, index) in question.answers" :key="index">
-										  <input class="form-check-input" :name="'choose' +question.id"  type="radio" v-model="answers[question.id]"  :value="response.id" :id="'flexCheckDefault' + response.id  ">
-										  <label class="form-check-label" :for="'flexCheckDefault' + response.id  "  v-html="response.body">
+									<div class="form-check-answer"  v-for="(response, index) in question.answers" :key="index">
+										  <input class="form-check-input-answer" :name="'choose' +question.id"  type="radio" v-model="answers[question.id]"  :value="response.id" :id="'flexCheckDefault' + response.id  ">
+										  <label class="form-check-label-answer" :for="'flexCheckDefault' + response.id  "  v-html="response.body">
 											 
 										  </label>
 									</div>

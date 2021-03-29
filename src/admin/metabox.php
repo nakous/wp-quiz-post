@@ -17,8 +17,14 @@ function wpqp_questions_meta_box_callback( $post ) {
     wp_nonce_field( 'global_notice_nonce', 'global_notice_nonce' );
     $questions = get_post_meta( $post->ID, FIELD_QUESTIONS, true );
     $answers = get_post_meta( $post->ID, FIELD_ANSWERS, true );
-    echo '<textarea style="width:100%" id="'.FIELD_QUESTIONS.'" name="'.FIELD_QUESTIONS.'">' . esc_attr( $questions ) . '</textarea>';
-    echo '<textarea style="width:100%" id="'.FIELD_ANSWERS.'" name="'.FIELD_ANSWERS.'">' . esc_attr( $answers ) . '</textarea>';
+    $theme = get_post_meta( $post->ID, FIELD_THEME, true );
+    echo '<textarea style="width:100%" id="'.FIELD_QUESTIONS.'" name="'.FIELD_QUESTIONS.'">' .   $questions  . '</textarea>';
+    echo '<textarea style="width:100%" id="'.FIELD_ANSWERS.'" name="'.FIELD_ANSWERS.'">' .   $answers   . '</textarea>';
+    echo '<label for="'.FIELD_THEME.'">Theme</label>
+    <select  style="width:100%" id="'.FIELD_THEME.'" name="'.FIELD_THEME.'">';  
+        echo '<option '.($theme=='default' ? "selected"  : "" ).' value="default">Default</option>';
+        echo '<option '.($theme=='list' ? "selected"  : "" ).' value="list">List</option>';
+    echo '</select>';
    echo quiz_html( $post );
 }
 function save_wpqp_questions_meta_box_data( $post_id ) {
@@ -57,6 +63,9 @@ function save_wpqp_questions_meta_box_data( $post_id ) {
     // Update the meta field in the database.
     $q_data =   $_POST[FIELD_QUESTIONS] ;
     update_post_meta( $post_id, FIELD_QUESTIONS, $q_data );
+
+    $t_data =   $_POST[FIELD_THEME] ;
+    update_post_meta( $post_id, FIELD_THEME, $t_data );
     
    
     

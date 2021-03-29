@@ -67,3 +67,16 @@ function wpqp_post_shortcode() {
     return $message;
 }
 add_shortcode('wp_quiz_post', 'wpqp_post_shortcode');
+
+function wpqp_post_load_theme($post_id){
+    $options = get_option( 'wpqp_fields_options' );
+    $post   = get_post( $post_id );
+    $qs =  get_post_meta( $post_id, FIELD_THEME, true );
+ 
+    if(isset($qs) &&  $qs == "list")
+      
+      wpqp_list_theme($post_id);
+    else
+      wpqp_default_theme($post_id);
+     
+}

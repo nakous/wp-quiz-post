@@ -1,6 +1,6 @@
 console.log("WP Quiz post v1.1.1");
 
-Vue.config.devtools = true;
+//Vue.config.devtools = true;
 
 
 
@@ -114,6 +114,7 @@ var app = new Vue({
         this.new_question={}
         this.scrollTo('card-question' +question.id);
         tinymce.remove('#editor-question-body');
+        tinymce.remove('#edit-answer-textarea');
         this.indexIds();
         this.update_question();this.update_answers();
       },
@@ -126,6 +127,7 @@ var app = new Vue({
         this.new_question={}
         this.scrollTo('card-question' +question.id);
         tinymce.remove('#editor-question-body');
+        tinymce.remove('#edit-answer-textarea');
         this.update_question();this.update_answers();
       },
       getQuestionIndex:function(question){
@@ -134,7 +136,8 @@ var app = new Vue({
       cancel_q: function(question){
         this.new_question = {}; 
         this.form_acive = false;
-        tinymce.remove('#editor-question-body');
+        tinymce.remove('#editor-question-body'); 
+        tinymce.remove('#edit-answer-textarea');
         this.update_question();this.update_answers();
       },
       update: function(question){
@@ -168,12 +171,13 @@ var app = new Vue({
        this.update_question();this.update_answers();
       },
       update_question: function(){
-        jQuery("#"+this.question_textarea).html(JSON.stringify(this.questions));
+        console.log(JSON.stringify(this.questions));
+        jQuery("#"+this.question_textarea).val(JSON.stringify(this.questions));
       },
       // Answer
       update_answers: function(){
         console.log(JSON.stringify(this.answers));
-        jQuery("#"+this.answers_textarea).html(JSON.stringify(this.answers));
+        jQuery("#"+this.answers_textarea).val(JSON.stringify(this.answers));
       },
       add_answer:function(answer ){
         answer.body=tinymce.get("edit-answer-textarea").getContent();

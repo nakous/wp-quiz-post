@@ -1,4 +1,4 @@
-Vue.config.devtools = true;
+//Vue.config.devtools = true;
 var quiz = {
     title: "Java",
     skill:'java',

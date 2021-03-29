@@ -33,9 +33,9 @@ function wpqp_Answers_list()
                  <td><?php
                  $post   = get_post( $row->postid );
                  if(isset($post->post_title))
-                 echo $post->post_title ;
+                     echo $post->post_title ;
                  else
-                 echo 'Not Found';
+                     echo 'Not Found';
                  ?></td>
              </tr>
          <?php 

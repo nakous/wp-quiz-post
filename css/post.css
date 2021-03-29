@@ -12,13 +12,13 @@ section#quiz-app {
     display: flex;
 }
 #quiz-app .col-left {
-    width: 30%;
-    padding: 10px;
-    border-right: 1px solid #DDD;
+    width: 40%;
+    padding: 10px; 
 }
 #quiz-app .col-right {
-    width: 70%;
-    padding: 10px;
+  width: 60%;
+  padding: 10px;
+  border-right: 1px solid #DDD;
 }
 #quiz-app .title  {
     font-family: Montserrat, sans-serif;
@@ -27,10 +27,16 @@ section#quiz-app {
     font-weight: 600;
     border-bottom: 1px solid #DDD;
     text-transform: capitalize;
+    margin: 0;
 }
+#quiz-app-list #wpqp-result {
+  text-align: center;
+}
+#quiz-app-list .display-score-1,
 #quiz-app .display-score-1 {
     font-size: 92px;
 }
+#quiz-app-list .display-score-2 ,
 #quiz-app .display-score-2 {
     font-size: 42px;
 }
@@ -61,6 +67,15 @@ section#quiz-app {
 }
 #quiz-app blockquote::before {
    content: "";
+}
+#quiz-app .form-check-answer input {
+  margin-right: 5px;
+}
+#quiz-app .form-check-answer {
+  display: flex;
+  margin-bottom: 8px;
+  max-width: 100%;
+  overflow: auto;
 }
 .questionBox  {
   font-family: "Open Sans", sans-serif;
@@ -180,6 +195,7 @@ section#quiz-app {
   margin-top: 12px;
   -webkit-box-flex: 1;
           flex-grow: 1;
+  overflow: hidden;
 }
 .questionBox .questionContainer .optionContainer .option {
   border-radius: 290486px;
@@ -248,30 +264,18 @@ section#quiz-app {
 .questionBox .button.is-active:hover {
   background: #0a2ffe;
 }
-
-@media screen and (min-width: 769px) {
-  .questionBox {
-    -webkit-box-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-            justify-content: center;
-  }
-  .questionBox .firstpage ,
-  .questionBox .questionContainer {
-    display: -webkit-box;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-            flex-direction: column;
-  }
+#wpqp-result{}
+#wpqp-result .question-card{
+  background: #FAFAFA;
+  box-shadow: 0 0px 0px rgba(0, 0, 0, 0.19), 0 2px 4px rgba(0, 0, 0, 0.23);
+  border: 1px solid #ddd;
 }
-@media screen and (max-width: 768px) {
-  .questionBox .sidebar {
-    height: auto !important;
-    border-radius: 6px 6px 0px 0px;
-  }
+#wpqp-result .question-card .title{
+  border-bottom: 1px solid #ddd;
+padding: 9px;
+font-size: 19px;
+font-weight: bold;
 }
-
 
 .swapping-squares-spinner, .swapping-squares-spinner * {
   box-sizing: border-box;
@@ -347,4 +351,67 @@ section#quiz-app {
   50% {
     transform: translate(150%,-150%) scale(2,2);
   }
+}
+#quiz-app-list {
+  padding: 20px;
+}
+#quiz-app-list .questionline {
+  margin-bottom: 10px;
+}
+#quiz-app-list .questionline p{
+  margin: 0;
+}
+#quiz-app-list ul.optionContainer {
+  margin: 0 0 0 9px;
+}
+#quiz-app-list .answer {
+  list-style: none;
+}
+#quiz-app-list li.answer > .label-answer {
+
+  display: inline-block;
+}
+#quiz-app-list li.answer > .label-answer > p {
+  margin: 0 0  5px;
+}
+@media screen and (min-width: 769px) {
+  .questionBox {
+    -webkit-box-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+            justify-content: center;
+  }
+  .questionBox .firstpage ,
+  .questionBox .questionContainer {
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+            flex-direction: column;
+  }
+}
+@media screen and (max-width: 768px) {
+  .questionBox .sidebar {
+    height: auto !important;
+    border-radius: 6px 6px 0px 0px;
+  }
+  #quiz-app .row-col {
+      display: block;
+  }
+  #quiz-app .col-right {
+    width: 100%;
+ 
+    border-right: none;
+}
+#quiz-app .col-left {
+  width: 100%;
+  padding: 10px;
+}
+.questionBox .height-300 {
+  min-height: auto;
+  max-height: none;
+}
+section#quiz-app {
+  padding: 3px;
+}
 }
