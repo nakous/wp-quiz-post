@@ -78,7 +78,8 @@ function quiz_html( $post ) {
                     </div> 
                     <ul class="cart-list-group">
                                 <li class="list-group-item"  v-for="(response, index) in question.answers" :key="index">
-                                        <input class="form-check-input" :name="'choose' +question.id"  type="radio" v-model="answers[question.id]"  :value="response.id" :id="'flexCheckDefault' + response.id  ">
+                                        <input class="form-check-input" v-if="question.answer_type != 'checkbox'" :name="'choose' +question.id"  type="radio" v-model="answers[question.id]"  :value="response.id" :id="'flexCheckDefault' + response.id  ">
+                                        <input class="form-check-input" v-if="question.answer_type== 'checkbox'" :name="'choose' +question.id"  type="checkbox" v-model="answers[response.id]"  :value="response.id" :id="'flexCheckDefault' + response.id  ">
                                         <label class="form-check-label" :for="'flexCheckDefault' + response.id  "  v-html="response.body">
                                             
                                         </label>

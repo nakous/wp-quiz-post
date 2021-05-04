@@ -37,6 +37,7 @@ require $theme_dir . 'src/admin/fields.php';
 require $theme_dir . 'src/admin/admindashboard.php';
 require $theme_dir . 'src/admin/settingspage.php';
 require $theme_dir . 'src/admin/answerslist.php'; 
+require $theme_dir . 'src/admin/importquiz.php'; 
 require $theme_dir . 'src/api/addanswers.php';
 
 /**
@@ -52,11 +53,14 @@ function add_admin_scripts( $hook ) {
             //Style
             wp_enqueue_style( 'sqp-bootstrap', BOOTSTRAP_CSS, array(  ), false, true );
             wp_enqueue_style( 'sqp-admin-style', PLUGIN_URL . 'css/admin.css',array('sqp-bootstrap') );
+            wp_enqueue_style( 'prism-style', PLUGIN_URL . 'css/prism.css',array() );
             //JS
 			wp_enqueue_script( 'sqp-bootstrap-js', BOOTSTRAP_JS , array( 'jquery' ), false, true);
 			wp_enqueue_script( 'vuejs', VUEJS , array( 'jquery' ) , false, true );
 			wp_enqueue_script( 'axios', AXIOS , array( 'vuejs' ) , false, true );
-			wp_enqueue_script('wp_quiz_post_script', PLUGIN_URL . 'js/script.js',array( 'vuejs','axios' ), false, true ); 
+			wp_enqueue_script('prism', PLUGIN_URL . 'js/prism.js',array(   ), false, true ); 
+			wp_enqueue_script('wp_quiz_post_script', PLUGIN_URL . 'js/script.js',array( 'vuejs','axios','prism' ), false, true ); 
+            
         }
     }
 }

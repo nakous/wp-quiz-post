@@ -24,5 +24,12 @@ function addWPQPAdminMenu() {
         NAME.'-answers',
          'wpqp_Answers_list' 
     );
+    add_submenu_page( NAME,
+        'Import Quiz',
+        'Import Quiz',
+        'administrator',
+        NAME.'-import',
+         'wpqp_import_quiz' 
+    );
 }
 add_action('admin_menu',  'addWPQPAdminMenu' , 9);

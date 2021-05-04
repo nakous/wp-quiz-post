@@ -45,6 +45,16 @@ var app = new Vue({
             this.status = 'started'; 
 			this.id = this.questinnaire.questions[this.qIndex].id;
 			localStorage.setItem('userQuiz',JSON.stringify(this.user));
+			axios.post(SITE_URL+"/wp-json/quiz/apiv1/addanswers",{ 
+				answers:JSON.stringify(this.answers), 
+				time:new Date(),
+				post:ID,
+				status:this.status,
+				user:this.user
+		   }).then(function (response) {
+			console.log(response);
+			
+			});
 			//this.finish();
         },
 
@@ -71,13 +81,25 @@ var app = new Vue({
 			   }).then(function (response) {
 					console.log(response.data);
 					that.result =response.data;
+					//google.charts.load('current', {packages: ['corechart']});
+					//google.charts.setOnLoadCallback(that.drawChart(response.data.data));
 					// that.result.score = response.data.score;
 					// that.result.pourcentage = response.data.pourcentage;
 					 that.loading = false;
 				})
         
       },
-
+	  drawChart: function (data) {
+		// Define the chart to be drawn.
+		var data = new google.visualization.DataTable();
+		data.addColumn('string', 'level');
+		data.addColumn('number', 'score');
+		data.addRows(data);
+  
+		// Instantiate and draw the chart.
+		var chart = new google.visualization.LineChart(document.getElementById('AnswersChart'));
+		chart.draw(data, null);
+	  },
 	   validEmail: function (email) {
 		   var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 		  console.log(re.test(email));

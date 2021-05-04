@@ -12,11 +12,13 @@ function wpqp_default_theme($post_id){
     // wp_enqueue_script( 'sqp-bootstrap-js', BOOTSTRAP_JS , array( 'jquery' ), false, true);
      wp_enqueue_script( 'vuejs', VUEJS , array( 'jquery' ) , false, true );
      wp_enqueue_script( 'axios', AXIOS , array( 'vuejs' ) , false, true );
+	 wp_enqueue_script( 'gstatic-chart', 'https://www.gstatic.com/charts/loader.js' , array() , false, true );
      wp_enqueue_script('wp_quiz_post_script', PLUGIN_URL . 'js/post-quiz.js',array( 'vuejs','axios' ), false, true ); 
 	$qs =  get_post_meta( $post_id, FIELD_QUESTIONS, true );
 	if(empty($qs))
 		return;
 ?>
+
 <script>
     QUESTIONS =<?php echo $qs; ?>;
     ID = <?php echo $post_id; ?>;
@@ -52,8 +54,11 @@ function wpqp_default_theme($post_id){
 								<?php
 								echo get_the_content($post->ID);
 								?> 
-								<input class="quiz-field-text" type="email" placeholder="Your Email*" v-model="user.mail"> 
-								<input class="quiz-field-text" type="text" placeholder="Your Name*" v-model="user.name">
+								 <div class="user-info" style="display:none;">
+									<input class="quiz-field-text" type="email" placeholder="Your Email*" v-model="user.mail"> 
+									<input class="quiz-field-text" type="text" placeholder="Your Name*" v-model="user.name">
+									<p><span style="color:red;">*</span> To start this quiz, please enter your name and email </p>
+								</div>
 								<blockquote class="  ">
                                     <?php
                                     $options = get_option( 'wpqp_fields_options' );
@@ -66,7 +71,8 @@ function wpqp_default_theme($post_id){
 				</div>
 				<!--quizFooter: navigation and progress-->
 				<footer class="questionFooter">			 
-						<button class="btn-quiz"  :disabled="(user.mail !='' && user.name !='' && validEmail(user.mail) === true) ? false : true" v-on:click="startQuiz()">Start</button>
+						<!--  :disabled="(user.mail !='' && user.name !='' && validEmail(user.mail) === true) ? false : true" -->
+						<button class="btn-quiz"  v-on:click="startQuiz()">Start Quiz</button>
 				</footer>
 			</div>
 			<!--qusetionContainer-->
@@ -137,11 +143,18 @@ function wpqp_default_theme($post_id){
 						<div class="square"></div>
 					  </div>
 					<div v-if="loading == false">
+						<div id="AnswersChart" style="width: 50%; height: 250px; display:none;"></div>
+						<div class="display-score text-center">
+							  Your Score 
+						</div>
 						<div class="display-score-1  text-center">
-							  {{ result.percentage  }}  %
+							  {{ result.percentage  }}%
 						</div>
 						<p class="display-score-2">
-							{{ result.score }} / {{ qCount  }}  
+							{{ result.score }}/{{ qCount  }}  
+						</p>
+						<p class="" style="margin-bottom: 13px;">
+							Questions 
 						</p>
 					</div> 
 				</div> 

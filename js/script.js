@@ -3,7 +3,22 @@ console.log("WP Quiz post v1.1.1");
 //Vue.config.devtools = true;
 
 
-
+var tichnos = [
+  {text: 'Java', value: 'java'},
+  {text: 'Python', value: 'python'},
+  {text: 'HTML/XML', value: 'markup'},
+  {text: 'Django/Jinja2', value: 'django'},
+  {text: 'CSS', value: 'css'},
+  {text: 'JavaScript', value: 'javascript'},
+  {text: 'C++', value: 'cpp'},
+  {text: 'C', value: 'c'},
+  {text: 'C#', value: 'csharp'},
+  {text: 'Windows BAT', value: 'batch'},
+  {text: 'Bash', value: 'bash'},
+  {text: 'YAML', value: 'yaml'},
+  {text: 'SQL', value: 'sql'},
+  {text: 'reStructuredText', value: 'rest'},
+  {text: 'Plain Text', value: 'none'}];
 
 var app = new Vue({
     el: "#app-quiz",
@@ -60,7 +75,12 @@ var app = new Vue({
             tinymce.init({
               selector: '#editor-question-body', 
               menubar: false,
-              toolbar: 'undo redo | bold italic underline | link hr | alignleft aligncenter alignright | bullist numlist outdent indent blockquote | code'
+              toolbar: 'undo redo | bold italic underline | link hr | alignleft aligncenter alignright | bullist numlist outdent indent blockquote | codesample',
+              external_plugins: {
+                codesample: '../../../wp-content/plugins/wp-quiz-post/js/codesample/plugin.min.js',
+                preview: '../../../wp-content/plugins/wp-quiz-post/js/preview/plugin.min.js'
+              },
+              codesample_languages: tichnos
             });
         }, 100);
       },
@@ -69,7 +89,13 @@ var app = new Vue({
             tinymce.init({
               selector:   ele, 
               menubar: false,
-              toolbar: 'undo redo | bold italic underline | code'
+              toolbar: 'undo redo | bold italic underline | styleselect | codesample',
+
+      external_plugins: {
+        codesample: '../../../wp-content/plugins/wp-quiz-post/js/codesample/plugin.min.js',
+        preview: '../../../wp-content/plugins/wp-quiz-post/js/preview/plugin.min.js'
+      },
+      codesample_languages: tichnos
             });
             console.log("tinymceStart_a");
         }, 200);
